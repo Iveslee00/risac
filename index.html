@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="R-ISAC 章程草案意見蒐集問卷">
+  <title>R-ISAC 章程草案意見蒐集問卷</title>
+  <style>
+    :root { --navy:#12314c; --blue:#2d78ac; --sky:#eaf5fa; --surface:#fff; --line:#d9e8f0; --muted:#638096; --danger:#b54646; --success:#1d775b; }
+    * { box-sizing:border-box; }
+    html,body{height:100%;overflow:hidden}
+    body { margin:0; min-width:320px; color:var(--navy); background:linear-gradient(135deg,#e7f5fb,#fafcfd 45%,#eaf3f8); font-family:"PingFang TC","Noto Sans TC",Arial,sans-serif; }
+    button,input,textarea { font:inherit; }
+    .shell { width:min(1120px,calc(100% - 40px)); height:calc(100svh - 56px); margin:28px auto; display:flex; flex-direction:column; overflow:hidden; border:1px solid #cfe3ed; border-radius:10px; background:var(--surface); box-shadow:0 22px 55px rgba(30,79,108,.15); }
+    .site-header { min-height:100px; display:flex; align-items:flex-start; justify-content:space-between; gap:20px; padding:0 46px 0 0; border-bottom:1px solid var(--line); }
+    .brand { display:flex; align-items:center; gap:12px; min-width:0; font-size:15px; font-weight:700; letter-spacing:.04em; }
+    .brand-image { display:none; width:min(500px,66vw); object-fit:contain; }
+    .brand-mark { flex:0 0 auto; display:grid; place-items:center; width:38px; height:38px; border-radius:50%; color:#fff; background:linear-gradient(145deg,#63b9d9,#225a91); font:700 11px/1 Arial,sans-serif; letter-spacing:.04em; box-shadow:0 4px 11px #d3e9f3; }
+    .header-note { margin-top:32px; color:#728da0; font-size:12px; letter-spacing:.1em; white-space:nowrap; }
+    .hero { padding:28px 76px 24px; background:radial-gradient(circle at 87% 5%,#d2edf8 0,transparent 25%),linear-gradient(110deg,#f9fcfe,#edf7fb); }
+    .eyebrow { color:var(--blue); font-size:10px; font-weight:700; letter-spacing:.14em; }
+    h1 { margin:7px 0 6px; font-family:"Songti TC","Noto Serif TC",serif; font-size:29px; line-height:1.25; letter-spacing:.03em; }
+    .hero p { max-width:760px; margin:0; color:#507087; font-size:13px; line-height:1.6; }
+    .hero-meta { display:flex; flex-wrap:wrap; gap:10px 20px; margin:12px 0 0; color:#638196; font-size:12px; }
+    .hero-meta span { border-left:2px solid #90c9df; padding-left:12px; }
+    form { flex:1; min-height:0; }.form-layout { height:100%; display:grid; grid-template-columns:205px minmax(0,1fr); gap:48px; padding:28px 76px 24px; }
+    .side-nav { border-right:1px solid var(--line); padding-right:27px; }
+    .side-nav h2 { margin:0 0 14px; color:#8aa0b0; font-size:11px; font-weight:700; letter-spacing:.14em; }
+    .chapter-indicator { display:block; padding:8px 0; color:#698499; font-size:13px; }
+    .chapter-indicator.is-current { color:var(--blue); font-weight:700; }
+    .progress { margin:0 0 25px; }
+    .progress-label { display:flex; justify-content:space-between; margin-bottom:8px; color:#668195; font-size:12px; }
+    .progress-track { height:4px; overflow:hidden; border-radius:4px; background:#e5f0f5; }
+    .progress-value { width:0; height:100%; background:var(--blue); transition:width .42s cubic-bezier(.2,.75,.25,1); }
+    main { display:grid; grid-template-rows:auto minmax(0,1fr) auto; min-height:0; overflow:hidden; }.steps-stage { display:flex; min-height:0; overflow:hidden; }.steps-stage > #articleQuestions { display:contents; }.wizard-step { display:none; min-height:0; overflow:hidden; }.wizard-step.is-active { display:flex; flex:1; flex-direction:column; min-height:0; animation:step-in .2s ease; }.wizard-step.is-active .question-card { display:flex; flex:1; flex-direction:column; min-height:0; margin-bottom:0; }.wizard-step.is-active textarea { flex:1; min-height:84px; }@keyframes step-in { from{opacity:.1;transform:translateX(8px)}to{opacity:1;transform:translateX(0)} }
+    .section-heading { display:flex; align-items:baseline; gap:12px; margin:0 0 22px; }
+    .section-heading span { color:var(--blue); font-size:12px; font-weight:700; letter-spacing:.14em; }
+    .section-heading h2 { margin:0; font-size:23px; letter-spacing:.03em; }
+    .intro { margin:0 0 20px; color:var(--muted); font-size:14px; line-height:1.75; }
+    .field-grid { display:grid; grid-template-columns:1fr 1fr; gap:17px; margin-bottom:26px; }
+    .field,.question-card { scroll-margin-top:18px; }
+    label { display:block; margin-bottom:8px; color:#25455d; font-size:14px; font-weight:700; }
+    .required { color:#a94848; }
+    input,textarea { width:100%; border:1px solid #cfe1eb; border-radius:5px; outline:none; color:var(--navy); background:#fbfdfe; }
+    input { height:46px; padding:0 13px; }
+    textarea { min-height:116px; padding:13px 14px; resize:vertical; line-height:1.65; }
+    input:focus,textarea:focus { border-color:#5da4c9; box-shadow:0 0 0 3px rgba(93,164,201,.15); }
+    .invalid input,.invalid textarea { border-color:var(--danger); background:#fffafa; }
+    .field-error { min-height:19px; margin:5px 0 0; color:var(--danger); font-size:12px; }
+    .question-card { margin:0 0 17px; padding:25px 27px; border:1px solid var(--line); border-radius:7px; background:#fff; }
+    .question-card .card-top { display:flex; justify-content:space-between; gap:14px; margin-bottom:12px; }
+    .article-tag { color:#3b7faa; font-size:12px; font-weight:700; letter-spacing:.06em; }
+    .open-tag { color:#8ba0ae; font-size:11px; }
+    .question-card h3 { margin:0 0 7px; font-size:16px; line-height:1.65; }
+    .source { margin:0 0 14px; color:#6e8799; font-size:13px; line-height:1.75; white-space:pre-line; }
+    .section-break { margin:42px 0 23px; padding-top:38px; border-top:1px solid var(--line); }
+    .status { display:none; margin:22px 0 0; padding:13px 15px; border-radius:5px; font-size:14px; line-height:1.55; }
+    .status.error { display:block; color:#943f3f; background:#fff4f4; border:1px solid #f0caca; }
+    .status.success { display:block; color:#17694f; background:#f1fbf7; border:1px solid #c8eadb; }
+    .actions { display:flex; justify-content:space-between; gap:12px; margin:0; padding:10px 0 0; background:#fff; }
+    .previous { min-width:112px; padding:13px 18px; border:1px solid #bcd6e4; border-radius:4px; color:#3d6982; background:#fff; font-size:14px; font-weight:700; cursor:pointer; }.previous:hover{background:#f3f9fc}.previous[hidden]{display:none}
+    .submit { min-width:168px; padding:13px 22px; border:0; border-radius:4px; color:#fff; background:var(--blue); font-size:14px; font-weight:700; letter-spacing:.06em; box-shadow:0 5px 12px #d1e5ef; cursor:pointer; }
+    .actions .submit{flex:1;min-width:0}
+    .submit,.previous { transition:transform .18s ease, background-color .18s ease, box-shadow .18s ease; }.submit:hover:not(:disabled),.previous:hover { transform:translateY(-1px); }.submit:hover { background:#216995; box-shadow:0 7px 15px #c6dfea; }.submit:active:not(:disabled),.previous:active { transform:translateY(0); }.submit:focus-visible { outline:3px solid #9ed2e8; outline-offset:3px; }.submit:disabled { cursor:wait; opacity:.65; }
+    .footer-note { display:none; }
+    @media (max-width:760px) { body{background:#f5fafc}.shell{width:100%;height:100svh;margin:0;border:0;border-radius:0;box-shadow:none}.site-header{min-height:68px;padding:0 20px 0 0}.brand{font-size:12px}.brand-image{width:min(300px,74vw)}.brand-mark{width:32px;height:32px;font-size:10px}.header-note{display:none}.hero{padding:12px 24px 10px}.eyebrow{display:none}h1{margin:0;font-size:21px}.hero p,.hero-meta{display:none}.form-layout{display:grid;grid-template-columns:1fr;gap:0;padding:16px 20px 14px}.side-nav{display:none}.field-grid{grid-template-columns:1fr;gap:12px}.question-card{padding:16px}.question-card .card-top{display:block}.open-tag{display:block;margin-top:4px}.section-heading{margin-bottom:12px}.section-heading h2{font-size:20px}.intro{margin-bottom:12px;font-size:13px}textarea{min-height:80px}.actions{padding:10px 0 0}.submit{width:auto}.footer-note{display:none} }
+    @media (prefers-reduced-motion: reduce) { *,*::before,*::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; } }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="site-header"><div class="brand"><img class="brand-image" src="cnralogo.png" alt="中華民國無店面零售商業同業公會 Logo"><span class="brand-mark" aria-hidden="true">SCA</span><span class="brand-name">中華民國無店面零售商業同業公會</span></div><span class="header-note">R-ISAC 意見蒐集問卷</span></header>
+    <section class="hero"><div class="eyebrow">RETAIL INFORMATION SHARING AND ANALYSIS CENTER</div><h1>R-ISAC 章程草案｜意見蒐集問卷</h1><p>請針對章程條文、會費規劃與 R-ISAC 未來運作提供建議。</p><div class="hero-meta"><span>填答時間約 8 - 12 分鐘</span><span>所有意見將彙整供章程研議</span></div></section>
+    <form id="surveyForm" novalidate>
+      <div class="form-layout"><nav class="side-nav" aria-label="問卷章節"><h2>問卷章節</h2><span class="chapter-indicator" data-chapter="profile">01　基本資料</span><span class="chapter-indicator" data-chapter="charter">02　章程條文</span><span class="chapter-indicator" data-chapter="finance">03　會費與財務</span><span class="chapter-indicator" data-chapter="support">04　建議與資源</span></nav>
+        <main>
+          <div class="progress" aria-label="填答進度"><div class="progress-label"><span>填答進度</span><span id="progressText">0 / 17 題</span></div><div class="progress-track"><div class="progress-value" id="progressValue"></div></div></div>
+          <div class="steps-stage"><section id="profile" class="wizard-step"><div class="section-heading"><span>基本資料</span><h2>請先留下聯絡資訊</h2></div><p class="intro">填寫完成後，點選下一步開始逐條提供意見。</p><div class="field-grid"><div class="field" id="companyField"><label for="company">公司名稱 <span class="required">＊</span></label><input id="company" name="company" autocomplete="organization" required><p class="field-error" id="companyError"></p></div><div class="field" id="respondentNameField"><label for="respondentName">姓名 <span class="required">＊</span></label><input id="respondentName" name="respondentName" autocomplete="name" required><p class="field-error" id="respondentNameError"></p></div></div></section>
+          <div id="articleQuestions"></div>
+          <section id="fee" class="wizard-step"><div class="section-heading"><span>會費與財務</span><h2>會費金額想法</h2></div><article class="question-card"><div class="card-top"><span class="article-tag">開放式作答</span></div><h3>您認為一般會員交文會費及贊助會員贊助費的金額、計費方式或調整原則，應如何規劃？</h3><p class="source">章程第九條：中心運作經費來源包含一般會員繳交之會費、贊助會員提供之贊助費、政府補助或委辦經費及其他相關收入。</p><textarea name="membershipFeeOpinion" placeholder="請輸入您的意見…"></textarea></article></section>
+          <section id="operations" class="wizard-step"><div class="section-heading"><span>運作建議</span><h2>R-ISAC 未來運作</h2></div><article class="question-card"><div class="card-top"><span class="article-tag">開放式作答</span></div><h3>您對 R-ISAC 未來的運作機制、服務內容、情資分享或會員交流，有哪些建議？</h3><textarea name="operationsSuggestion" placeholder="請輸入您的建議…"></textarea></article></section>
+          <section id="suggestions" class="wizard-step"><div class="section-heading"><span>資源支持</span><h2>公司可支持資源</h2></div><article class="question-card"><div class="card-top"><span class="article-tag">開放式作答</span></div><h3>貴公司可為 R-ISAC 提供哪些資源支持？例如專業、人力、技術、情資、教育訓練或跨域合作。</h3><textarea name="resourceSupport" placeholder="請輸入可支持的資源…"></textarea></article></section></div>
+          <div id="formStatus" class="status" role="status" aria-live="polite"></div><div class="actions"><button class="previous" type="button" id="previousButton" hidden>← 上一步</button><button class="submit" type="button" id="nextButton">下一步 →</button><button class="submit" type="submit" id="submitButton" hidden>送出意見</button></div><p class="footer-note">送出後，資料將提供 R-ISAC 章程研議使用。</p>
+        </main>
+      </div>
+    </form>
+  </div>
+  <script>
+    // 將 Apps Script 部署後取得的 /exec URL 貼在此處。
+    const FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbw2pYvBS0wnzlKUF2qtecbAVhLjcij23He2sXb1F8ySGan0njiasTj36vq-OvkPWslD/exec';
+    const articles = [
+      ['article1','第一條 設立宗旨','您是否認同 R-ISAC 的設立宗旨與定位？有哪些內容應增補、調整或更明確說明？','中華民國無店面零售商業同業公會（以下簡稱本會）為協助會員及其他零售業者提升資通安全防護能力、建立資安情資分享機制、強化聯防應變能力，並促進產業之永續發展，經由理事會決議通過，設立「零售業資安情資分享與分析中心」（以下簡稱本中心，英文名稱為 Retail Information Sharing and Analysis Center，簡稱 R-ISAC）。'],
+      ['article2','第二條（法律地位）','您對 R-ISAC 作為本會理事會轄下專案組織、非獨立法人資格的安排，有何意見或建議？','本中心為本會理事會下轄之專案組織，不具獨立法人資格。本中心之一切行為及對外行文，均應以本會名義行之。'],
+      ['article3','第三條 核心任務','您對 R-ISAC 的五項核心任務與優先順序，有哪些調整、增補或執行上的建議？','本中心之核心任務如下：\n1. 情資蒐集分析與分享： 蒐集國內外有關零售業之資安威脅、漏洞、攻擊與詐騙手法等情資，進行分析後分享本中心會員。\n2. 早期預警機制： 針對即時或潛在之資安威脅，向本中心會員發布早期預警。\n3. 情資共享與聯防機制： 若本中心會員遭受網路攻擊或可疑活動時，經去識別化後得透過本中心所設立情資共享平台向本中心其他會員提出預警,亦可向本中心提出協助需求,由本中心協調其他會員提供防禦經驗及處置建議。\n4. 資安教育訓練、意識提升與交流： 舉辦資安教育訓練及研討會，提升整體產業資安防護意識與量能。\n5. 跨領域及國際合作:建立本中心與國內其他領域或其他國家相關產業 ISAC 之合作管道,強化國際接軌、情資交流、實戰經驗分享及重大資安事件國內外協防與協處。'],
+      ['article4','第四條 中心','您對執行長、副執行長與顧問的設置、遴聘方式及職責分工，有何意見？','本中心置執行長一人，由本會理事長提名，經理事會同意後聘任之，綜理本中心業務。\n本中心得視業務需要，置副執行長一至二人，襄助執行長辦理本中心業務，由執行長提請理事長聘任之。\n本中心得視業務需要，置顧問若干人，由執行長提請理事長聘任之。'],
+      ['article5','第五條 執行委員會','您對執行委員會的組成、15 至 31 名代表名額、任期、決策權責與每季開會頻率，有何意見？','本中心設置執行委員會，為本中心最高決策單位，負責監督財務預算、制定戰略方向及審定重大政策，由本會理事長聘任本中心 15 至 31 家一般會員指派代表擔任執行委員，任期與本會理監事相同，其連任者，不得超過二分之一。至少每三個月需召開一次會議。'],
+      ['article6','第六條 本中心會員資格與義務','您對一般會員、贊助會員的資格，以及禁止內部社群商業推銷與業務開發的基本義務，有何意見？','1. 一般會員： 凡本會所屬會員，均得申請加入本中心。\n2. 贊助會員： 非本會會員之相關企業及機構，經本中心審查通過後，得成為贊助會員。\n3. 基本義務： 本中心會員應遵守本章程及相關保密協定，嚴禁於本中心內部社群進行任何形式的商業推銷及業務開發。'],
+      ['article7','第七條 情資分享原則','您對情資分享、事件通報與應變協助應遵守的互信、互惠、安全與保密原則，有何建議？','本中心會員參與情資分享、事件通報與應變協助等作業，應秉持互信、互惠、安全及保密之原則辦理，從中取得之各項資訊非經本中心同意，不得公開揭露。'],
+      ['article8','第八條 保密協定與交通號誌協定','您對 NDA、TLP 2.0 分級（RED、AMBER+STRICT、AMBER、GREEN、CLEAR）的適用範圍與執行方式，有何建議？','本中心會員及工作人員均應簽署保密協定（NDA）。\n本中心之情資分享與傳遞，應嚴格遵守國際通用之 TLP 2.0（Traffic Light Protocol，交通號誌協定） 分級制度：\n1.TLP:RED（紅）： 僅限於參與會議/訊息傳遞之接收者知悉，不可對外揭露。\n2.TLP:AMBER +STRICT(黃+) :僅限於接收者所屬組織內部。\n3.TLP:AMBER（黃）： 僅限於接收者所屬組織內部及必要之防護利益關係人知悉。\n4.TLP:GREEN（綠）： 得與本中心會員分享，但不可公開發表。\n5.TLP:CLEAR（白）： 屬公開資訊，無傳播限制。'],
+      ['article9','第九條 經費來源','您對中心運作經費來源的完整性與可行性，有哪些補充建議？','本中心所需之運作經費，其來源如下：\n1. 本中心一般會員繳交之會費\n2. 本中心贊助會員提供之贊助費\n3. 政府相關機構之專案補助或委辦經費。\n4. 其他相關收入。'],
+      ['article10','第十條 財務管理','您對每年度開始前提報收支預算表、送理事會通過的財務管理流程，有何建議？','本中心之收支預算表，應於每年度開始前，提報本會理事會通過。'],
+      ['article11','第十一條 跨域合作','您對與政府主管機關及其他領域 I-SAC／CERT 結盟合作的範圍、方式或優先對象，有何建議？','本中心得視業務推動需要，邀請政府相關主管機關(單位)指導，並與其他領域之 I-SAC/CERT 結盟合作。'],
+      ['article12','第十二條 章程修改與實施','您對章程修改、提請理事會通過後實施，以及修改時亦同的程序，有何建議？','本章程經本中心擬訂，提請本會理事會通過後實施，修正時亦同。']
+    ];
+    const questionTarget = document.querySelector('#articleQuestions');
+    questionTarget.innerHTML = articles.map(([name,tag,question,source]) => `<section class="wizard-step"><div class="section-heading"><span>章程條文</span><h2>${tag}</h2></div><p class="intro">本題為開放式作答，可提出修正文字、補充內容或實務建議。</p><article class="question-card"><h3>${question}</h3><p class="source">${source}</p><textarea name="${name}" placeholder="請輸入您的意見…"></textarea></article></section>`).join('');
+    const form = document.querySelector('#surveyForm');
+    const status = document.querySelector('#formStatus');
+    const submitButton = document.querySelector('#submitButton'); const previousButton = document.querySelector('#previousButton'); const nextButton = document.querySelector('#nextButton'); const steps = [...document.querySelectorAll('.wizard-step')]; let currentStep = 0;
+    const responseFields = [...form.querySelectorAll('textarea')];
+    const totalFields = 2 + responseFields.length;
+    function updateChapterIndicator() { const chapter = currentStep === 0 ? 'profile' : currentStep <= 12 ? 'charter' : currentStep === 13 ? 'finance' : 'support'; document.querySelectorAll('.chapter-indicator').forEach((item) => { const active = item.dataset.chapter === chapter; item.classList.toggle('is-current', active); item.setAttribute('aria-current', active ? 'step' : 'false'); }); }
+    function updateProgress() { document.querySelector('#progressText').textContent = `第 ${currentStep + 1} / ${steps.length} 步`; document.querySelector('#progressValue').style.width = `${((currentStep + 1) / steps.length) * 100}%`; updateChapterIndicator(); }
+    function showStep(index) { currentStep = Math.max(0, Math.min(index, steps.length - 1)); steps.forEach((step, itemIndex) => step.classList.toggle('is-active', itemIndex === currentStep)); previousButton.hidden = currentStep === 0; nextButton.hidden = currentStep === steps.length - 1; submitButton.hidden = currentStep !== steps.length - 1; updateProgress(); clearStatus(); }
+    function setFieldError(name, message) { const field = document.querySelector(`#${name}Field`); document.querySelector(`#${name}Error`).textContent = message; field.classList.toggle('invalid', Boolean(message)); form.elements[name].setAttribute('aria-invalid', Boolean(message)); }
+    function showStatus(kind, message) { status.className = `status ${kind}`; status.textContent = message; }
+    function clearStatus() { status.className = 'status'; status.textContent = ''; }
+    nextButton.addEventListener('click', () => { if (currentStep === 0) { const company = form.company.value.trim(); const respondentName = form.respondentName.value.trim(); setFieldError('company', company ? '' : '請填寫公司名稱。'); setFieldError('respondentName', respondentName ? '' : '請填寫姓名。'); if (!company || !respondentName) { (!company ? form.company : form.respondentName).focus(); return; } } showStep(currentStep + 1); });
+    previousButton.addEventListener('click', () => showStep(currentStep - 1));
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault(); clearStatus();
+      const company = form.company.value.trim(); const respondentName = form.respondentName.value.trim();
+      setFieldError('company', company ? '' : '請填寫公司名稱。'); setFieldError('respondentName', respondentName ? '' : '請填寫姓名。');
+      if (!company || !respondentName) { const first = !company ? form.company : form.respondentName; first.focus(); return; }
+      if (!FORM_ENDPOINT || FORM_ENDPOINT.startsWith('PASTE_')) { showStatus('error','尚未設定 Google 試算表接收網址。請依 README 部署 Apps Script，並將 /exec URL 填入 FORM_ENDPOINT。'); return; }
+      const payload = Object.fromEntries(new FormData(form).entries()); payload.submittedAt = new Date().toISOString();
+      submitButton.disabled = true; submitButton.textContent = '送出中…';
+      try { const response = await fetch(FORM_ENDPOINT, { method:'POST', headers:{ 'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8' }, body:new URLSearchParams({ payload:JSON.stringify(payload) }) }); const result = await response.json(); if (!response.ok || !result.ok) throw new Error(result.error || '伺服器未能接收資料。'); showStatus('success','已成功送出，感謝您提供寶貴意見。'); form.reset(); updateProgress(); }
+      catch (error) { showStatus('error',`送出失敗：${error.message} 請確認網路後再試一次。`); }
+      finally { submitButton.disabled = false; submitButton.textContent = '送出意見'; }
+    });
+    document.querySelector('.brand-image').addEventListener('load', (event) => { event.currentTarget.style.display = 'block'; document.querySelector('.brand-mark').style.display = 'none'; document.querySelector('.brand-name').style.display = 'none'; });
+    showStep(0);
+  </script>
+</body>
+</html>
