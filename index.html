@@ -38,7 +38,7 @@
     .section-heading h2 { margin:0; font-size:23px; letter-spacing:.03em; }
     .intro { margin:0 0 20px; color:var(--muted); font-size:14px; line-height:1.75; }
     .article-step-meta { display:flex; align-items:baseline; gap:18px; margin:0 0 14px; white-space:nowrap; }.article-step-meta .section-heading,.article-step-meta .intro { margin:0; }.article-step-meta .intro { font-size:13px; }
-    .field-grid { display:grid; grid-template-columns:1fr 1fr; gap:17px; margin-bottom:26px; }
+    .field-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:17px; margin-bottom:26px; }
     .field,.question-card { scroll-margin-top:18px; }
     label { display:block; margin-bottom:8px; color:#25455d; font-size:14px; font-weight:700; }
     .required { color:#a94848; }
@@ -81,7 +81,7 @@
       <div class="form-layout"><nav class="side-nav" aria-label="問卷章節"><h2>問卷章節</h2><span class="chapter-indicator" data-chapter="profile">01　基本資料</span><span class="chapter-indicator" data-chapter="charter">02　章程條文</span><span class="chapter-indicator" data-chapter="finance">03　會費與財務</span><span class="chapter-indicator" data-chapter="support">04　建議與資源</span></nav>
         <main>
           <div class="progress" aria-label="填答進度"><div class="progress-label"><span>填答進度</span><span id="progressText">0 / 17 題</span></div><div class="progress-track"><div class="progress-value" id="progressValue"></div></div></div>
-          <div class="steps-stage"><section id="profile" class="wizard-step"><div class="section-heading"><span>基本資料</span><h2>請先留下聯絡資訊</h2></div><p class="intro">填寫完成後，點選下一步開始逐條提供意見。</p><div class="field-grid"><div class="field" id="companyField"><label for="company">公司名稱 <span class="required">＊</span></label><input id="company" name="company" autocomplete="organization" required><p class="field-error" id="companyError"></p></div><div class="field" id="respondentNameField"><label for="respondentName">姓名 <span class="required">＊</span></label><input id="respondentName" name="respondentName" autocomplete="name" required><p class="field-error" id="respondentNameError"></p></div></div></section>
+          <div class="steps-stage"><section id="profile" class="wizard-step"><div class="section-heading"><span>基本資料</span><h2>請先留下聯絡資訊</h2></div><p class="intro">填寫完成後，點選下一步開始逐條提供意見。</p><div class="field-grid"><div class="field" id="companyField"><label for="company">公司名稱 <span class="required">＊</span></label><input id="company" name="company" autocomplete="organization" required><p class="field-error" id="companyError"></p></div><div class="field" id="respondentNameField"><label for="respondentName">姓名 <span class="required">＊</span></label><input id="respondentName" name="respondentName" autocomplete="name" required><p class="field-error" id="respondentNameError"></p></div><div class="field" id="jobTitleField"><label for="jobTitle">職稱 <span class="required">＊</span></label><input id="jobTitle" name="jobTitle" autocomplete="organization-title" required><p class="field-error" id="jobTitleError"></p></div></div></section>
           <div id="articleQuestions"></div>
           <section id="fee" class="wizard-step"><div class="section-heading"><span>會費與財務</span><h2>會費金額想法</h2></div><article class="question-card"><div class="card-top"><span class="article-tag">開放式作答</span></div><h3>您認為一般會員交文會費及贊助會員贊助費的金額、計費方式或調整原則，應如何規劃？</h3><p class="source">章程第九條：中心運作經費來源包含一般會員繳交之會費、贊助會員提供之贊助費、政府補助或委辦經費及其他相關收入。</p><textarea name="membershipFeeOpinion" placeholder="請輸入您的意見…"></textarea></article></section>
           <section id="operations" class="wizard-step"><div class="section-heading"><span>運作建議</span><h2>R-ISAC 未來運作</h2></div><article class="question-card"><div class="card-top"><span class="article-tag">開放式作答</span></div><h3>您對 R-ISAC 未來的運作機制、服務內容、情資分享或會員交流，有哪些建議？</h3><textarea name="operationsSuggestion" placeholder="請輸入您的建議…"></textarea></article></section>
@@ -93,7 +93,7 @@
   </div>
   <script>
     // 將 Apps Script 部署後取得的 /exec URL 貼在此處。
-    const FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxbdRqD33K-d4tMnwF_ao98mUonSU3DH6NELuKR77TeMPufqfEmhUOTHPqjLRFMonb1/exec';
+    const FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzHlMJmxqzbP5gCkBAbuJcQyDrU031S-lRy0unlnZHFFtL6Tj7XQ7F6GWOxQQz-edP8/exec';
     const articles = [
       ['article1','第一條 設立宗旨','您是否認同 R-ISAC 的設立宗旨與定位？有哪些內容應增補、調整或更明確說明？','中華民國無店面零售商業同業公會（以下簡稱本會）為協助會員及其他零售業者提升資通安全防護能力、建立資安情資分享機制、強化聯防應變能力，並促進產業之永續發展，經由理事會決議通過，設立「零售業資安情資分享與分析中心」（以下簡稱本中心，英文名稱為 Retail Information Sharing and Analysis Center，簡稱 R-ISAC）。'],
       ['article2','第二條（法律地位）','您對 R-ISAC 作為本會理事會轄下專案組織、非獨立法人資格的安排，有何意見或建議？','本中心為本會理事會下轄之專案組織，不具獨立法人資格。本中心之一切行為及對外行文，均應以本會名義行之。'],
@@ -121,13 +121,13 @@
     function setFieldError(name, message) { const field = document.querySelector(`#${name}Field`); document.querySelector(`#${name}Error`).textContent = message; field.classList.toggle('invalid', Boolean(message)); form.elements[name].setAttribute('aria-invalid', Boolean(message)); }
     function showStatus(kind, message) { status.className = `status ${kind}`; status.textContent = message; }
     function clearStatus() { status.className = 'status'; status.textContent = ''; }
-    nextButton.addEventListener('click', () => { if (currentStep === 0) { const company = form.company.value.trim(); const respondentName = form.respondentName.value.trim(); setFieldError('company', company ? '' : '請填寫公司名稱。'); setFieldError('respondentName', respondentName ? '' : '請填寫姓名。'); if (!company || !respondentName) { (!company ? form.company : form.respondentName).focus(); return; } } showStep(currentStep + 1); });
+    nextButton.addEventListener('click', () => { if (currentStep === 0) { const company = form.company.value.trim(); const respondentName = form.respondentName.value.trim(); const jobTitle = form.jobTitle.value.trim(); setFieldError('company', company ? '' : '請填寫公司名稱。'); setFieldError('respondentName', respondentName ? '' : '請填寫姓名。'); setFieldError('jobTitle', jobTitle ? '' : '請填寫職稱。'); if (!company || !respondentName || !jobTitle) { (!company ? form.company : !respondentName ? form.respondentName : form.jobTitle).focus(); return; } } showStep(currentStep + 1); });
     previousButton.addEventListener('click', () => showStep(currentStep - 1));
     form.addEventListener('submit', async (event) => {
       event.preventDefault(); clearStatus();
-      const company = form.company.value.trim(); const respondentName = form.respondentName.value.trim();
-      setFieldError('company', company ? '' : '請填寫公司名稱。'); setFieldError('respondentName', respondentName ? '' : '請填寫姓名。');
-      if (!company || !respondentName) { const first = !company ? form.company : form.respondentName; first.focus(); return; }
+      const company = form.company.value.trim(); const respondentName = form.respondentName.value.trim(); const jobTitle = form.jobTitle.value.trim();
+      setFieldError('company', company ? '' : '請填寫公司名稱。'); setFieldError('respondentName', respondentName ? '' : '請填寫姓名。'); setFieldError('jobTitle', jobTitle ? '' : '請填寫職稱。');
+      if (!company || !respondentName || !jobTitle) { const first = !company ? form.company : !respondentName ? form.respondentName : form.jobTitle; first.focus(); return; }
       if (!FORM_ENDPOINT || FORM_ENDPOINT.startsWith('PASTE_')) { showStatus('error','尚未設定 Google 試算表接收網址。請依 README 部署 Apps Script，並將 /exec URL 填入 FORM_ENDPOINT。'); return; }
       const payload = Object.fromEntries(new FormData(form).entries()); payload.submittedAt = new Date().toISOString();
       submitButton.disabled = true; submitButton.textContent = '送出中…';
